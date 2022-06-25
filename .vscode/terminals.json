@@ -1,0 +1,44 @@
+{
+  "autorun": true,
+  "autokill": true,
+  "recycle": true,
+  "terminals": [
+    {
+      "icon": "eye",
+      "name": "client",
+      "description": "React application",
+      "commands": [
+        "cd client",
+        "clear",
+        "npm start"
+      ]
+    },
+    {
+      "icon":"tools",
+      "name": "npm client",
+      "description": "install npm packages for CLIENT",
+      "commands": [
+        "cd client",
+        "clear",
+        "npm install "
+      ],
+      "execute":false
+    },
+    {
+      "icon":"database",
+      "name": "server",
+      "description": "Express application",
+      "commands": [
+        "cd server","clear",
+        "npm start"
+      ]
+    },
+    {
+      "icon":"tools",
+      "name": "npm server",
+      "description": "install npm packages for SERVER",
+      "commands": ["cd server","clear","npm install "],
+      "execute":false
+    }
+  ]
+}
