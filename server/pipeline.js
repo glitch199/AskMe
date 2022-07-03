@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 //   isUserResourceAvailable,
 // } = require("./middlewares/ValidationMiddlewares/isResourceAvailable");
 
-// const userRoutes = require("./routes/userRoutes");
+const customerRoutes = require("./routes/customerRoutes");
 // const authRoutes = require("./routes/authRoutes");
 // const categoryRoutes = require("./routes/categoryRoutes");
 // const transactionRoutes = require("./routes/transactionRoutes");
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(multer().none());
 app.use(cookieParser());
 
-// app.use("/api/users", userRoutes);
+app.use("/api/customers", customerRoutes);
 // app.use("/api/auth", authRoutes);
 // app.use(
 //   "/api/users/:userId/categories",

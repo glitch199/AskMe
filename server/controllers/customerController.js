@@ -2,20 +2,22 @@ const bcrypt = require("bcrypt");
 const { morphism } = require("morphism");
 const UserModel = require("../models/UserModel");
 const schema = require("../morphismSchemas/UserSchema");
-exports.postUser = async (req, res) => {
+exports.postCustomer = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const hash = await bcrypt.hash(password, 12);
-    const newUser = await UserModel.create({ email, password: hash });
+    const input = req.body;
+    const hash = await bcrypt.hash(input.password, 12);
+    input.password = hash;
+    const newCustomer = await UserModel.create(input);
+    delete newCustomer.password;
     return res.status(201).json({
       status: "success",
       message: "user registered successfully",
       data: {
-        user: morphism(schema, newUser),
+        customer: newCustomer,
       },
     });
   } catch (error) {
-    return res.status(500);
+    return res.status(500).json();
   }
 };
 exports.getUserByEmail = async (req, res) => {
@@ -35,11 +37,7 @@ exports.getUserByEmail = async (req, res) => {
       },
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json(
-        "Something went wrong on our servers while processing your request. Please try again"
-      );
+    return res.status(500).json();
   }
 };
 exports.getAllUsers = async (req, res) => {
@@ -53,10 +51,6 @@ exports.getAllUsers = async (req, res) => {
       },
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json(
-        "Something went wrong on our servers while processing your request. Please try again"
-      );
+    return res.status(500).json();
   }
 };
