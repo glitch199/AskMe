@@ -19,13 +19,17 @@ const userSchema = Schema({
     enum: ["Active", "Inactive"],
     default: "Active",
   },
-  bills: {
+  queries: {
     type: [ObjectId],
-    ref: "Bill",
+    ref: "Query",
   },
   themes: {
     type: [ObjectId],
     ref: "Expertize",
+  },
+  favorite_experts: {
+    type: [ObjectId],
+    ref: "User",
   },
 });
 

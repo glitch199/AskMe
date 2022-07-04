@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 // } = require("./middlewares/ValidationMiddlewares/isResourceAvailable");
 
 const customerRoutes = require("./routes/customerRoutes");
+const userRoutes = require("./routes/userRoutes");
 // const authRoutes = require("./routes/authRoutes");
 // const categoryRoutes = require("./routes/categoryRoutes");
 // const transactionRoutes = require("./routes/transactionRoutes");
@@ -21,6 +22,7 @@ app.use(multer().none());
 app.use(cookieParser());
 
 app.use("/api/customers", customerRoutes);
+app.use("/api/users", userRoutes);
 // app.use("/api/auth", authRoutes);
 // app.use(
 //   "/api/users/:userId/categories",

@@ -1,15 +1,10 @@
 const express = require("express");
-const {
-  postCustomer: postUser,
-  getAllUsers,
-  getUserByEmail,
-} = require("../controllers/customerController");
+const { postCustomer: postUser } = require("../controllers/customerController");
 // const {
 //   validateUser,
 // } = require("../middlewares/ValidationMiddlewares/userValidationMiddlewares");
 const customerRouter = express.Router();
 
-customerRouter.route("/").get(getAllUsers).post(postUser);
-customerRouter.route("/:email").get(getUserByEmail);
+customerRouter.route("/").post(postUser);
 
 module.exports = customerRouter;
