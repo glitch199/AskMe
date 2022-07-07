@@ -1,12 +1,10 @@
 const bcrypt = require("bcrypt");
-const { morphism } = require("morphism");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../models/UserModel");
-const schema = require("../morphismSchemas/UserSchema");
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await UserModel.findOne({ email });
+    const { username, password } = req.body;
+    const user = await UserModel.findOne({ username });
     if (!user) {
       return res.status(401).json({
         status: "failed",
@@ -21,7 +19,7 @@ exports.login = async (req, res) => {
       });
     }
     jwt.sign(
-      { email },
+      { username },
       process.env.TOKEN_SECRET,
       { expiresIn: "15 days" },
       (err, jwt) => {
@@ -37,7 +35,7 @@ exports.login = async (req, res) => {
           message: "user logged successfully",
           data: {
             jwt,
-            user: morphism(schema, user),
+            user: user,
           },
         });
       }
@@ -59,13 +57,13 @@ exports.authenticate = async (req, res) => {
         status: "failed",
         message: "Invalid Credentials",
       });
-    UserModel.findOne({ email: decode.email })
+    UserModel.findOne({ username: decode.username })
       .then((user) =>
         res.json({
           status: "success",
           message: "authentication was successful",
           data: {
-            user: morphism(schema, user),
+            user: user,
           },
         })
       )
@@ -77,16 +75,5 @@ exports.authenticate = async (req, res) => {
           )
       );
     decode;
-  });
-};
-exports.logOut = async (req, res) => {
-  const token = req.headers["authorization"];
-  jwt.verify(token, process.env.TOKEN_SECRET, (err, decode) => {
-    if (err)
-      return res.status(401).json({
-        status: "failed",
-        message: "Invalid Credentials",
-      });
-    res.removeHeaders("authorization").json("You have log out successfully");
   });
 };
