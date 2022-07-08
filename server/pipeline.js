@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 
 const customerRoutes = require("./routes/customerRoutes");
 const userRoutes = require("./routes/userRoutes");
+const themeRoutes = require("./routes/themeRoutes");
 // const authRoutes = require("./routes/authRoutes");
 // const categoryRoutes = require("./routes/categoryRoutes");
 // const transactionRoutes = require("./routes/transactionRoutes");
@@ -23,6 +24,7 @@ app.use(cookieParser());
 
 app.use("/api/customers", customerRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/themes", themeRoutes);
 // app.use("/api/auth", authRoutes);
 // app.use(
 //   "/api/users/:userId/categories",
