@@ -4,9 +4,7 @@ const {
   patchTheme,
   getThemes,
 } = require("../controllers/themesController");
-// const {
-//   validateUser,
-// } = require("../middlewares/ValidationMiddlewares/userValidationMiddlewares");
+
 const themeRouter = express.Router();
 
 themeRouter.route("/").post(postTheme).get(getThemes);

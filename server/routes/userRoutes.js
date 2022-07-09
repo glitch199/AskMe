@@ -3,14 +3,8 @@ const {
   getAllUsers,
   getUserByEmailOrUsername,
 } = require("../controllers/userController");
-const {
-  login,
-  authenticate,
-  logOut,
-} = require("../controllers/authController");
-// const {
-//   validateUser,
-// } = require("../middlewares/ValidationMiddlewares/userValidationMiddlewares");
+const { login, authenticate } = require("../controllers/authController");
+
 const userRouter = express.Router();
 
 userRouter.route("/").get(getAllUsers);
