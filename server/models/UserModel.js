@@ -25,7 +25,7 @@ const userSchema = Schema({
   },
   themes: {
     type: [ObjectId],
-    ref: "Expertize",
+    ref: "Theme",
   },
   favorite_experts: {
     type: [ObjectId],

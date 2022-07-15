@@ -28,6 +28,7 @@ app.use("/api/customers", customerRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/themes", themeRoutes);
 app.use("/api/administrators", administratorRoutes);
+app.use("/api/experts", expertRoutes);
 // app.use("/api/auth", authRoutes);
 // app.use(
 //   "/api/users/:userId/categories",

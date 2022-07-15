@@ -1,4 +1,4 @@
-const ThemeModel = require("../models/Themes");
+const ThemeModel = require("../models/ThemeModel");
 exports.postTheme = async (req, res) => {
   try {
     const newTheme = await ThemeModel.create(req.body);
