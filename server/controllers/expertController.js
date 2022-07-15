@@ -1,5 +1,6 @@
 const UserModel = require("../models/UserModel");
 const ThemeModel = require("../models/ThemeModel");
+const { json } = require("express");
 exports.getExperts = async (req, res) => {
   try {
     const search_parameter = req.query.name;
@@ -50,7 +51,14 @@ exports.updateThemesByExpert = async (req, res) => {
     }
 
     await UserModel.findByIdAndUpdate(expertId, { themes: themesId });
-    res.json();
+    themesId.forEach(async (id) => {
+      const theme = await ThemeModel.findById(id);
+      const experts = theme.experts;
+      await ThemeModel.findByIdAndUpdate(id, {
+        experts: experts.concat(expertId),
+      });
+    });
+    res.json({ message: "Expert's theme sucessfully updated" });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
