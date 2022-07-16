@@ -1,5 +1,4 @@
 const UserModel = require("../models/UserModel");
-
 exports.getUserByEmailOrUsername = async (req, res) => {
   const params = req.params;
   try {

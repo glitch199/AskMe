@@ -1,6 +1,5 @@
 const UserModel = require("../models/UserModel");
 const ThemeModel = require("../models/ThemeModel");
-const { json } = require("express");
 exports.getExperts = async (req, res) => {
   try {
     const search_parameter = req.query.name;

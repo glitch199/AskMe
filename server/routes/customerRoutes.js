@@ -1,8 +1,12 @@
 const express = require("express");
-const { postCustomer: postUser } = require("../controllers/customerController");
+const {
+  postCustomer,
+  postQueryForCustomer,
+} = require("../controllers/customerController");
 
 const customerRouter = express.Router();
 
-customerRouter.route("/").post(postUser);
+customerRouter.route("/").post(postCustomer);
+customerRouter.route("/:customerId/queries").post(postQueryForCustomer);
 
 module.exports = customerRouter;
